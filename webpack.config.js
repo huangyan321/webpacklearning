@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -67,6 +68,10 @@ module.exports = {
     }),
     //! 清除dist资源
     new CleanWebpackPlugin(),
+    //! 定义全局常量
+    new DefinePlugin({
+      BASE_URL: '"./"',
+    }),
   ],
   resolve: {
     alias: {
