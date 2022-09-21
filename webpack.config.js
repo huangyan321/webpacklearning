@@ -26,6 +26,7 @@ module.exports = {
           },
         },
       },
+      // 解析css
       {
         test: /\.css$/,
         //转换规则： 从下往上
@@ -44,6 +45,7 @@ module.exports = {
           },
         ],
       },
+      //解析less
       {
         test: /\.less$/,
         use: [
@@ -60,11 +62,28 @@ module.exports = {
           'less-loader',
         ],
       },
-
+      //解析ts
       {
         test: /\.ts$/,
         exclude: '/node_modules/',
         use: ['babel-loader'],
+      },
+      //解析scss
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              //! 这个选项可以让css处理@import语法时回退到上一个loader再次对导入的文件做处理
+              importLoaders: 1,
+            },
+          },
+          //! 或者可以直接写一个配置文件 这样只需要postcss-loader就行
+          'postcss-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
