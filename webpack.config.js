@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -64,6 +65,8 @@ module.exports = {
       title: 'lan bi tou',
       template: './public/index.html',
     }),
+    //! 清除dist资源
+    new CleanWebpackPlugin(),
   ],
   resolve: {
     alias: {
