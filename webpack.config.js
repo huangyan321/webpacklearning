@@ -13,6 +13,13 @@ module.exports = {
   },
   mode: 'development',
   devtool: 'inline-cheap-module-source-map',
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    compress: true,
+    port: 9000,
+  },
   module: {
     rules: [
       //解析js(x)

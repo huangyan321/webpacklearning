@@ -6,7 +6,8 @@
   "scripts": {
     "build": "npm run type-check && webpack --config ./webpack.config.js",
     "type-check": "tsc --noEmit",
-    "type-check-watch": "tsc --noEmit --watch"
+    "type-check-watch": "tsc --noEmit --watch",
+    "dev": "webpack-dev-server  --config ./webpack.config.js"
   },
   "keywords": [],
   "author": "",
