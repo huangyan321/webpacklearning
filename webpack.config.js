@@ -60,6 +60,12 @@ module.exports = {
           'less-loader',
         ],
       },
+
+      {
+        test: /\.ts$/,
+        exclude: '/node_modules/',
+        use: ['babel-loader'],
+      },
     ],
   },
   plugins: [
