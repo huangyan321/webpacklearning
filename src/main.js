@@ -1,5 +1,6 @@
 import { sum, sub } from '@/js/math';
-import { num } from './js/tsTest.ts';
+import { num } from './js/tsTest';
+import './vue/index';
 import './css/lesstest.less';
 import './css/index.css';
 const img = document.createElement('img');

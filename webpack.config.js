@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { DefinePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -85,6 +86,12 @@ module.exports = {
           'sass-loader',
         ],
       },
+      //解析vue
+      {
+        test: /\.vue$/,
+        //vue-loader的使用必须依赖VueLoaderPlugin
+        use: ['vue-loader'],
+      },
     ],
   },
   plugins: [
@@ -111,6 +118,7 @@ module.exports = {
         },
       ],
     }),
+    new VueLoaderPlugin(),
   ],
   resolve: {
     alias: {
