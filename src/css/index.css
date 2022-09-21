@@ -1,8 +1,20 @@
-.container {
-  width: 200px;
-  height: 200px;
-  background-color: red;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
+.container {
+  width: 400px;
+  height: 200px;
+  background-color: gray;
+}
+/* 根元素上的样式 */
 :root {
   --groove-color: #333;
+}
+.vuejs-container {
+  width: 400px;
+  height: 100px;
+  border: 1px solid gray;
+  box-shadow: 1px 4px 5px 1px gray;
 }

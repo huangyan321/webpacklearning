@@ -1,5 +1,6 @@
 <template>
-  <div class="box" @click="reverseName">{{ name }}</div>
+  <div class="box">{{ name }}</div>
+  <button @click="reverseName">反转</button>
 </template>
 <script>
 import { ref } from 'vue';
@@ -8,7 +9,6 @@ export default {
   setup() {
     const name = ref('hello world');
     const reverseName = () => {
-      console.log(123);
       name.value = name.value.split('').reverse().join('');
     };
     return { name, reverseName };
