@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { DefinePlugin } = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: './src/main.js',
   output: {
@@ -71,6 +72,18 @@ module.exports = {
     //! 定义全局常量
     new DefinePlugin({
       BASE_URL: '"./"',
+    }),
+    //! 用于复制资源
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          globOptions: {
+            //! 选择要忽略的文件
+            ignore: ['**/index.html', '**/.DS_store'],
+          },
+        },
+      ],
     }),
   ],
   resolve: {
