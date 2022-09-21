@@ -11,6 +11,18 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: {
+          // loader: 'file-loader',
+          loader: 'url-loader',
+          options: {
+            name: 'img/[name].[hash:6].[ext]',
+            //!限制1kb以下的可以转成base64
+            limit: 1024,
+          },
+        },
+      },
+      {
         test: /\.css$/,
         //转换规则： 从下往上
         use: [
