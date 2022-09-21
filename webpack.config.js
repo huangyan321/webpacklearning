@@ -15,6 +15,13 @@ module.exports = {
   devtool: 'inline-cheap-module-source-map',
   module: {
     rules: [
+      //解析js(x)
+      {
+        test: /\.jsx?$/,
+        exclude: '/node_modules/',
+        use: ['babel-loader'],
+      },
+      //解析图片资源
       {
         test: /\.(png|jpe?g|gif|svg)$/,
         use: {
