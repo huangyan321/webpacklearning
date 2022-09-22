@@ -100,6 +100,15 @@ module.exports = {
           'sass-loader',
         ],
       },
+      // 解析字体文件
+      {
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'fonts/[name].[hash:7].[ext]',
+        },
+      },
       //解析vue文件,并提供HMR支持
       {
         test: /\.vue$/,
