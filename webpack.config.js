@@ -14,6 +14,7 @@ module.exports = {
   mode: 'development',
   devtool: 'inline-cheap-module-source-map',
   devServer: {
+    hot: true,
     static: {
       directory: path.join(__dirname, 'public'),
     },
