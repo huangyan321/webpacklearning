@@ -24,9 +24,14 @@ module.exports = {
     rules: [
       //解析js(x)
       {
-        test: /\.jsx?$/,
-        exclude: '/node_modules/',
+        test: /\.m?(j|t)sx?$/,
+        exclude: /core-js/,
         use: ['babel-loader'],
+        //或者这种方法,可以编译node_modules,除了core-js
+        // include: {
+        //   and: [/node_modules/],
+        //   not: [/core-js/]
+        // },
       },
       //解析图片资源
       {
@@ -76,12 +81,6 @@ module.exports = {
           },
           'less-loader',
         ],
-      },
-      //解析ts
-      {
-        test: /\.ts$/,
-        exclude: '/node_modules/',
-        use: ['babel-loader'],
       },
       //解析scss
       {
