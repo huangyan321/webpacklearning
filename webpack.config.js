@@ -99,7 +99,7 @@ module.exports = {
           'sass-loader',
         ],
       },
-      //解析vue
+      //解析vue文件,并提供HMR支持
       {
         test: /\.vue$/,
         //vue-loader的使用必须依赖VueLoaderPlugin
