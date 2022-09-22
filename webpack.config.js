@@ -137,6 +137,8 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
-    extensions: ['.js', '.vue', '.json', '.ts'],
+    extensions: ['.js', '.vue', '.json', '.ts', '.jsx', '.less'],
+    //解析目录时用到的文件名
+    mainFiles: ['index'],
   },
 };

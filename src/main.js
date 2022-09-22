@@ -1,11 +1,13 @@
-import { sum, sub } from '@/js/math';
-import { num } from './js/tsTest';
-import './vue/index';
-import './css/lesstest.less';
+//统一加了后缀 目的是更好辨识,
+import { sum, sub } from '@/js/math.js';
+import { a, nnumber } from './js/hello-ts.ts';
+import './vue/index.js';
+import './css/hello-less.less';
 import './css/index.css';
 const img = document.createElement('img');
 img.src = require('./img/lanbitou.png').default;
 document.body.appendChild(img);
-console.log(num);
+console.log(a);
+console.log(nnumber);
 console.log(sum(10, 20));
 console.log(sub(20, 10));

@@ -1,4 +1,4 @@
-const num = 123;
+const nnumber = 123;
 const str = '';
 type obj = {
   a: string;
@@ -11,8 +11,8 @@ const a: obj = {
   c: { a: 1 },
 };
 
-console.log(num);
+console.log(nnumber);
 const res = new Promise((resolve, reject) => {
   resolve(1);
 });
-exports.num = { num, str, a, res };
+export { a, nnumber };
