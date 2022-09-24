@@ -1,8 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { DefinePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
+const TerserPlugin = require('terser-webpack-plugin');
 const { merge } = require('webpack-merge');
 const resolvePath = require('./resolve-path');
 const devConfig = require('./webpack.dev');
@@ -13,12 +14,14 @@ module.exports = function (env) {
   const baseConfig = {
     entry: {
       main: resolvePath('/src/main.js'),
-      'entry-2': resolvePath('/src/entry-2.js')
+      // 'entry-2': resolvePath('/src/entry-2.js'),
     },
     output: {
       filename: 'js/[name].bundle.js',
       //必须是绝对路径
       path: resolvePath('/dist'),
+      //异步导入块名
+      chunkFilename: 'js/[name].[hash:6].chunk.js'
       //相对路径，解析相对与dist的文件
       // publicPath: './',
     },
@@ -157,6 +160,43 @@ module.exports = function (env) {
       extensions: ['.js', '.vue', '.json', '.ts', '.jsx', '.less'],
       //解析目录时用到的文件名
       mainFiles: ['index'],
+    },
+    optimization: {
+      splitChunks: {
+        //同步异步导入都进行处理
+        chunks: 'all',
+        //拆分块最小值
+        // minSize: 20000,
+        //拆分块最大值
+        // maxSize: 20000,
+        //表示引入的包，至少被导入几次的才会进行分包，这里是1次
+        // minChunks: 1,
+        // 包名id算法
+        // chunkIds: 'named',
+        cacheGroups: {
+          vendors: {
+            // name: 'chunk-vendors',
+            //所有来自node_modules的包都会打包到vendors里面,可能会过大,所以可以自定义选择打包
+            test: /[\\/]node_modules[\\/](react|react-dom|vue)[\\/]/,
+            filename: 'js/[id].vendors.js',
+            chunks: 'all',
+            //处理优先级
+            priority: -10,
+          },
+          default: {
+            minChunks: 2,
+            priority: -20,
+            filename: 'js/[id].common.js',
+            reuseExistingChunk: true,
+          },
+        },
+      },
+      minimizer: [
+        new TerserPlugin({
+          //剥离注释
+          extractComments: false,
+        }),
+      ],
     },
   };
   const mergedConfig = isProduction ? merge(baseConfig, prodConfig) : merge(baseConfig, devConfig);
