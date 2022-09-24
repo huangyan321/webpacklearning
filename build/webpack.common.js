@@ -11,9 +11,12 @@ module.exports = function (env) {
   const isProduction = !!env.production;
   process.env.isProduction = isProduction;
   const baseConfig = {
-    entry: resolvePath('/src/main.js'),
+    entry: {
+      main: resolvePath('/src/main.js'),
+      'entry-2': resolvePath('/src/entry-2.js')
+    },
     output: {
-      filename: 'js/bundle.js',
+      filename: 'js/[name].bundle.js',
       //必须是绝对路径
       path: resolvePath('/dist'),
       //相对路径，解析相对与dist的文件
