@@ -35,6 +35,13 @@ module.exports = {
         changeOrigin: true,
       },
     },
+    //在前端路由设置为history模式时，刷新页面会导致404的问题，devServer中可配置historyApiFallback=true解决
+    //后端也一样
+    historyApiFallback: {
+      rewrite: [{ from: /abc/, to: '/index.html' }],
+    },
+  },
+
   module: {
     rules: [
       //解析js(x)
