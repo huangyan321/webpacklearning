@@ -10,6 +10,8 @@ module.exports = {
     filename: 'js/bundle.js',
     //必须是绝对路径
     path: path.resolve(__dirname, 'dist'),
+    //相对路径，解析相对与dist的文件
+    // publicPath: './',
   },
   mode: 'development',
   devtool: 'inline-cheap-module-source-map',
@@ -155,6 +157,7 @@ module.exports = {
       patterns: [
         {
           from: 'public',
+          to: 'static',
           globOptions: {
             //! 选择要忽略的文件
             ignore: ['**/index.html', '**/.DS_store'],
@@ -167,6 +170,12 @@ module.exports = {
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      '*vue': '@/vue',
+      '*react': '@/react',
+      '*js': '@/js',
+      '*img': '@/img',
+      '*css': '@/css',
+      '*public': '@/public',
     },
     extensions: ['.js', '.vue', '.json', '.ts', '.jsx', '.less'],
     //解析目录时用到的文件名
