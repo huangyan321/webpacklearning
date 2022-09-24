@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const { DefinePlugin } = require('webpack');
+const { DefinePlugin, ProvidePlugin } = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const TerserPlugin = require('terser-webpack-plugin');
 const { merge } = require('webpack-merge');
@@ -145,7 +145,16 @@ module.exports = function (env) {
           },
         ],
       }),
-      new VueLoaderPlugin(),
+        new VueLoaderPlugin(),
+        // 不建议使用
+        // shimming(预支变量)
+        new ProvidePlugin({
+          //当代码遇到某个变量找不到时，通过ProvidePlugin，自动导入对应的库
+          //比如node_modules中的某个依赖用到了axios，但是他默认了全局有安装axios，所以没有导入它，这时候使用以下配置
+          // axios: 'axios'
+          // 使用数组形式可以调用axios中的get方法
+          // get: ['axios','get']
+        }),
     ],
     resolve: {
       alias: {
