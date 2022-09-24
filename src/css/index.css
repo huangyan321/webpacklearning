@@ -14,13 +14,13 @@
 }
 .vuejs-container {
   width: 400px;
-  height: 100px;
+  height: 200px;
   border: 1px solid gray;
   box-shadow: 1px 4px 5px 1px gray;
 }
 .reactjs-container {
   width: 400px;
-  height: 100px;
+  height: 200px;
   border: 1px solid lightblue;
   box-shadow: 1px 4px 5px 1px lightblue;
 }
