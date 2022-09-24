@@ -1,3 +1,7 @@
+/**
+ * 已弃用，使用该项目中build文件夹的webpack配置
+ */
+
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');

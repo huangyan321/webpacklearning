@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run type-check && webpack --config ./webpack.config.js --progress",
+    "build": "npm run type-check && webpack --config ./build/webpack.common.js --env production --progress",
     "type-check": "tsc --noEmit",
     "type-check-watch": "tsc --noEmit --watch",
-    "dev": "webpack-dev-server  --config ./webpack.config.js  --progress"
+    "dev": "webpack-dev-server --config ./build/webpack.common.js --env development --progress"
   },
   "keywords": [],
   "author": "",
@@ -45,7 +45,8 @@
     "vue-template-compiler": "^2.7.10",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.10.0"
+    "webpack-dev-server": "^4.10.0",
+    "webpack-merge": "^5.8.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.38.0",
