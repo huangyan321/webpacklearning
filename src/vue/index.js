@@ -1,4 +1,4 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-
-export const vueInstance = createApp(App).mount('#app');
+import router from './router';
+export const vueInstance = createApp(App).use(router).mount('#app');

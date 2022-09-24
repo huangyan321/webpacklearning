@@ -1,6 +1,10 @@
 <template>
   <div class="box">{{ name }}</div>
   <button @click="reverseName">反转</button>
+  <hr />
+  <router-link to="/home">Home</router-link>
+  <router-link to="/about">About</router-link>
+  <router-view></router-view>
 </template>
 <script>
 import { ref } from 'vue';
