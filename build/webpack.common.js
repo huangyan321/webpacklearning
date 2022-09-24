@@ -191,6 +191,8 @@ module.exports = function (env) {
           },
         },
       },
+      //单独打包运行时代码
+      runtimeChunk: true,
       minimizer: [
         new TerserPlugin({
           //剥离注释
