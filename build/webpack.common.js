@@ -17,11 +17,11 @@ module.exports = function (env) {
         // 'entry-2': resolvePath('/src/entry-2.js'),
       },
       output: {
-        filename: 'js/[name].bundle.js',
+        filename: 'js/[name].[chunkhash:6].bundle.js',
         //必须是绝对路径
         path: resolvePath('/dist'),
         //异步导入块名
-        chunkFilename: 'js/[name].[hash:6].chunk.js',
+        chunkFilename: 'js/[name].[contenthash:6].chunk.js',
         //相对路径，解析相对与dist的文件
         // publicPath: './',
       },
@@ -45,7 +45,7 @@ module.exports = function (env) {
               // loader: 'file-loader',
               loader: 'url-loader',
               options: {
-                name: 'img/[name].[hash:6].[ext]',
+                name: 'img/[name].[hash].[ext]',
                 //!限制1kb以下的可以转成base64
                 limit: 1024,
               },
@@ -110,7 +110,7 @@ module.exports = function (env) {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: 'fonts/[name].[hash:7].[ext]',
+              name: 'fonts/[name].[chunkhash:6].[ext]',
             },
           },
           //解析vue文件,并提供HMR支持

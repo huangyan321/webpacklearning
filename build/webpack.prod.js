@@ -8,7 +8,7 @@ module.exports = {
     //! 清除dist资源
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash:6].css',
+      filename: 'css/[name].[contenthash:6].css',
     }),
   ],
 };
