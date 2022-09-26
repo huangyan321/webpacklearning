@@ -25,6 +25,11 @@ module.exports = function (env) {
         //相对路径，解析相对与dist的文件
         // publicPath: './',
       },
+      externals: {
+        //键名为对应包名
+        //键值为全局的一个对象
+        // lodash: '_',
+      },
       module: {
         rules: [
           //解析js(x)
@@ -210,7 +215,7 @@ module.exports = function (env) {
       },
     };
   };
-  const config = baseConfig(isProduction)
+  const config = baseConfig(isProduction);
   const mergedConfig = isProduction
     ? merge(config, require('./webpack.prod'))
     : merge(config, require('./webpack.dev'));
