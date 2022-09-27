@@ -30,12 +30,16 @@ module.exports = function (env) {
       },
       output: {
         filename: 'js/[name].[chunkhash:6].bundle.js',
-        //必须是绝对路径
-        path: resolvePath('/dist'),
+        //输出文件路径，必须是绝对路径
+        path: resolvePath('/dist/'),
         //异步导入块名
         chunkFilename: 'js/[name].[contenthash:6].chunk.js',
         //相对路径，解析相对与dist的文件
         // publicPath: './',
+        // // 用于打npm包 适配浏览器的umd commonJs直接使用
+        // libraryTarget: 'umd',
+        // // 代表全局导出的名字
+        // library: 'YouLibraryName'
       },
       externals: {
         //键名为对应包名

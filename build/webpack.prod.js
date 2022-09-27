@@ -6,6 +6,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const glob = require('glob');
 const resolvePath = require('./resolve-path');
 const compressionWebpackPlugin = require('compression-webpack-plugin');
+const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 //获取匹配到的文件
 // const purgeFiles = glob.sync(`${resolvePath('/src')}/**/*`, { nodir: true });
 // purgeFiles.push(resolvePath('/public/index.html'));
@@ -20,6 +22,8 @@ module.exports = {
       filename: 'css/[name].[contenthash:6].css',
     }),
     new CSSMinimizerWebpackPlugin(),
+    // //将js文件嵌入到html模板中，用于减少http请求
+    // new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.*\.js$/]),
     // new compressionWebpackPlugin({
     //   threshold: 0,
     //   test: /\.(css|js)/,
