@@ -1,4 +1,3 @@
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { DefinePlugin, ProvidePlugin } = require('webpack');
@@ -9,6 +8,20 @@ const resolvePath = require('./resolve-path');
 module.exports = function (env) {
   const isProduction = !!env.production;
   process.env.isProduction = isProduction;
+  const cssLoaders = [
+    isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+    {
+      loader: 'css-loader',
+      options: {
+        //! 这个选项可以让css处理@import语法时回退到上一个loader再次对导入的文件做处理
+        importLoaders: 1,
+      },
+    },
+    //! 或者可以直接写一个配置文件 这样只需要postcss-loader就行
+    {
+      loader: 'postcss-loader',
+    },
+  ];
   const baseConfig = isProduction => {
     return {
       entry: {
@@ -59,63 +72,30 @@ module.exports = function (env) {
           {
             test: /\.css$/,
             //转换规则： 从下往上
-            use: [
-              isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-              {
-                loader: 'css-loader',
-                options: {
-                  //! 这个选项可以让css处理@import语法时回退到上一个loader再次对导入的文件做处理
-                  importLoaders: 1,
-                },
-              },
-              //! 或者可以直接写一个配置文件 这样只需要postcss-loader就行
-              {
-                loader: 'postcss-loader',
-              },
-            ],
+            use: cssLoaders,
           },
           //解析less
           {
             test: /\.less$/,
-            use: [
-              isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 2,
-                },
-              },
-              {
-                loader: 'postcss-loader',
-              },
-              'less-loader',
-            ],
+            use: [...cssLoaders, 'less-loader'],
           },
           //解析scss
           {
             test: /\.scss$/,
-            use: [
-              'style-loader',
-              {
-                loader: 'css-loader',
-                options: {
-                  //! 这个选项可以让css处理@import语法时回退到上一个loader再次对导入的文件做处理
-                  importLoaders: 1,
-                },
-              },
-              //! 或者可以直接写一个配置文件 这样只需要postcss-loader就行
-              'postcss-loader',
-              'sass-loader',
-            ],
+            use: [...cssLoaders, 'sass-loader'],
           },
           // 解析字体文件
           {
             test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-            loader: 'url-loader',
-            options: {
-              limit: 10000,
-              name: 'fonts/[name].[chunkhash:6].[ext]',
-            },
+            use: [
+              {
+                loader: 'url-loader',
+                options: {
+                  limit: 10000,
+                  name: 'fonts/[name].[chunkhash:6].[ext]',
+                },
+              },
+            ],
           },
           //解析vue文件,并提供HMR支持
           {
