@@ -14,6 +14,7 @@ module.exports = {
     new CSSMinimizerWebpackPlugin(),
   ],
   optimization: {
+    //默认开启，标记未使用的函数，terser识别后可将其删除
     usedExports: true,
     // minimize: true,
     splitChunks: {
