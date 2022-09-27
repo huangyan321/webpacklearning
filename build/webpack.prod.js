@@ -20,7 +20,12 @@ module.exports = {
       filename: 'css/[name].[contenthash:6].css',
     }),
     new CSSMinimizerWebpackPlugin(),
-    new compressionWebpackPlugin(),
+    // new compressionWebpackPlugin({
+    //   threshold: 0,
+    //   test: /\.(css|js)/,
+    //   minRatio: 0.8,
+    //   algorithm: 'gzip',
+    // }),
   ],
   optimization: {
     //默认开启，标记未使用的函数，terser识别后可将其删除
