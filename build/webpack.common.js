@@ -8,7 +8,7 @@ const resolvePath = require('./resolve-path');
 module.exports = function (env) {
   const isProduction = !!env.production;
   process.env.isProduction = isProduction;
-  const cssLoaders = [
+  const CSSLoaderChains = [
     isProduction ? MiniCssExtractPlugin.loader : 'vue-style-loader',
     {
       loader: 'css-loader',
@@ -72,17 +72,17 @@ module.exports = function (env) {
           {
             test: /\.css$/,
             //转换规则： 从下往上
-            use: cssLoaders,
+            use: CSSLoaderChains,
           },
           //解析less
           {
             test: /\.less$/,
-            use: [...cssLoaders, 'less-loader'],
+            use: [...CSSLoaderChains, 'less-loader'],
           },
           //解析scss
           {
             test: /\.scss$/,
-            use: [...cssLoaders, 'sass-loader'],
+            use: [...CSSLoaderChains, 'sass-loader'],
           },
           // 解析字体文件
           {
@@ -110,6 +110,30 @@ module.exports = function (env) {
         new HtmlWebpackPlugin({
           title: 'lan bi tou',
           template: resolvePath('/public/index.html'),
+          // // 注入到html文件的什么位置
+          // inject: true,
+          // // 当文件没有任何改变时使用缓存
+          // cache: true,
+          minify: isProduction
+            ? {
+                // 是否移除注释
+                removeComments: true,
+                // 是否移除多余的属性
+                removeRedundantAttributes: true,
+                // 是否移除一些空属性
+                removeEmptyAttributes: true,
+                // 折叠空格
+                collapseWhitespace: true,
+                // 移除linkType
+                removeStyleLinkTypeAttributes: true,
+                minifyCSS: true,
+                minifyJS: {
+                  mangle: {
+                    toplevel: true,
+                  },
+                },
+              }
+            : false,
         }),
         //! 定义全局常量
         new DefinePlugin({
