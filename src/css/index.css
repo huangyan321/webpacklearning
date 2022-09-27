@@ -24,3 +24,9 @@
   border: 1px solid lightblue;
   box-shadow: 1px 4px 5px 1px lightblue;
 }
+.element-ui-container {
+  width: 400px;
+  height: 200px;
+  border: 1px solid lightblue;
+  box-shadow: 1px 4px 5px 1px lightblue;
+}

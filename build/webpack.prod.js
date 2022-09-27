@@ -2,6 +2,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CSSMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+// const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
+const glob = require('glob');
+const resolvePath = require('./resolve-path');
+//获取匹配到的文件
+// const purgeFiles = glob.sync(`${resolvePath('/src')}/**/*`, { nodir: true });
+// purgeFiles.push(resolvePath('/public/index.html'));
+
 module.exports = {
   mode: 'production',
 
@@ -55,6 +62,14 @@ module.exports = {
         parallel: true,
         terserOptions: {},
       }),
+      // new PurgeCSSPlugin({
+      //   paths: purgeFiles,
+      //   safelist: function () {
+      //     return {
+      //       standard: ['html', 'body'],
+      //     };
+      //   },
+      // }),
     ],
   },
 };
