@@ -19,7 +19,11 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: resolve('./loader/my-loader.js'),
+        use: [
+          resolve('./loader/my-loader1.js'),
+          resolve('./loader/my-loader2.js'),
+          resolve('./loader/my-loader3.js'),
+        ],
       },
     ],
   },
