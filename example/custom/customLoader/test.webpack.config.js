@@ -4,7 +4,6 @@ const resolve = function (url) {
   // eslint-disable-next-line no-undef
   return path.resolve(__dirname, url);
 };
-console.log(resolve('/dist/'));
 module.exports = {
   entry: {
     main: resolve('./src/index.js'),
@@ -20,9 +19,22 @@ module.exports = {
       {
         test: /\.js$/,
         use: [
-          resolve('./loader/my-loader1.js'),
+          {
+            loader: resolve('./loader/my-loader1.js'),
+            options: {
+              name: 'hello',
+              age: 18,
+            },
+          },
           resolve('./loader/my-loader2.js'),
           resolve('./loader/my-loader3.js'),
+          {
+            loader: resolve('./loader/my-babel-loader.js'),
+            options: {
+              presets: ['@babel/preset-env'],
+              configFile: false,
+            },
+          },
         ],
       },
     ],
