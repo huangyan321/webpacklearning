@@ -20,10 +20,13 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash:6].css',
+      chunkFilename: 'css/[name].[contenthash:6].chunk.min.css',
+      ignoreOrder: false,
     }),
     new CSSMinimizerWebpackPlugin(),
     // //将js文件嵌入到html模板中，用于减少http请求
     // new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.*\.js$/]),
+    //// 压缩
     // new compressionWebpackPlugin({
     //   threshold: 0,
     //   test: /\.(css|js)/,
@@ -41,7 +44,7 @@ module.exports = {
       //拆分块最小值
       // minSize: 20000,
       //拆分块最大值
-      // maxSize: 20000,
+      maxSize: 100000,
       //表示引入的包，至少被导入几次的才会进行分包，这里是1次
       // minChunks: 1,
       // 包名id算法
@@ -55,12 +58,14 @@ module.exports = {
           chunks: 'all',
           //处理优先级
           priority: -10,
+          enforce: true,
         },
         default: {
           minChunks: 2,
           priority: -20,
           filename: 'js/[id].common.js',
           reuseExistingChunk: true,
+          enforce: true,
         },
       },
     },

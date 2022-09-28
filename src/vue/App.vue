@@ -20,6 +20,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import '../css/hello-scss.scss';
 .box {
   color: red;
 }

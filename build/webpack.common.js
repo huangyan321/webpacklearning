@@ -3,6 +3,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { DefinePlugin, ProvidePlugin } = require('webpack');
 const { VueLoaderPlugin } = require('vue-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const SpeedMeasureWebpackPlugin = require('speed-measure-webpack-plugin');
 const { merge } = require('webpack-merge');
 const resolvePath = require('./resolve-path');
 module.exports = function (env) {
@@ -66,7 +67,7 @@ module.exports = function (env) {
               // loader: 'file-loader',
               loader: 'url-loader',
               options: {
-                name: 'img/[name].[hash].[ext]',
+                name: 'img/[name].[hash:6].[ext]',
                 //!限制1kb以下的可以转成base64
                 limit: 1024,
               },

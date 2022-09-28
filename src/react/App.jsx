@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '*css/hello-less.less'
 class App extends Component {
   constructor(props) {
     super(props),
