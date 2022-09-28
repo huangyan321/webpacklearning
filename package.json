@@ -7,7 +7,8 @@
     "build": "npm run type-check && webpack --config ./build/webpack.common.js --env production --progress",
     "type-check": "tsc --noEmit",
     "type-check-watch": "tsc --noEmit --watch",
-    "dev": "webpack-dev-server --config ./build/webpack.common.js --env development --progress"
+    "dev": "webpack-dev-server --config ./build/webpack.common.js --env development --progress",
+    "loader-build": "webpack --config ./example/custom/customLoader/test.webpack.config.js --env production --progress"
   },
   "keywords": [],
   "author": "",
