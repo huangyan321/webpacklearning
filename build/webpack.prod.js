@@ -25,7 +25,7 @@ module.exports = {
       ignoreOrder: false,
     }),
     new CSSMinimizerWebpackPlugin(),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     // //将js文件嵌入到html模板中，用于减少http请求
     // new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.*\.js$/]),
     //// 压缩
