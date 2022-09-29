@@ -9,6 +9,7 @@ const compressionWebpackPlugin = require('compression-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const AutoUploadPlugin = require('auto-file-upload-plugin');
 //获取匹配到的文件
 // const purgeFiles = glob.sync(`${resolvePath('/src')}/**/*`, { nodir: true });
 // purgeFiles.push(resolvePath('/public/index.html'));
@@ -25,6 +26,12 @@ module.exports = {
       ignoreOrder: false,
     }),
     new CSSMinimizerWebpackPlugin(),
+    new AutoUploadPlugin({
+      host: '',
+      username: '',
+      password: '',
+      remoteDirectory: '',
+    }),
     // new BundleAnalyzerPlugin(),
     // //将js文件嵌入到html模板中，用于减少http请求
     // new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime.*\.js$/]),
