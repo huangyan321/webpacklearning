@@ -1,0 +1,24 @@
+{
+  "name": "auto-file-upload-plugin",
+  "version": "1.1.0",
+  "description": "webpack plugin,可自动化上传打包文件至服务器指定文件夹",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "autoUpload",
+    "webpack",
+    "plugin",
+    "dist"
+  ],
+  "author": "huangyan321",
+  "license": "ISC",
+  "dependencies": {
+    "node-ssh": "^13.0.0",
+    "schema-utils": "^4.0.0"
+  }
+}

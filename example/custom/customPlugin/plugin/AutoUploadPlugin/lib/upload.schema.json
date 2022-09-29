@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "host": {
+      "type": "string",
+      "description": "please check your host"
+    },
+    "username": {
+      "type": "string",
+      "description": "please check your remoteUsername"
+    },
+    "password": {
+      "type": "string",
+      "description": "please check your remotePassword"
+    },
+    "remoteDirectory": {
+      "type": "string",
+      "description": "please check your remoteDirectory"
+    }
+  }
+}
