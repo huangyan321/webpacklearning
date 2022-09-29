@@ -1,7 +1,15 @@
 const { NodeSSH } = require('node-ssh');
 const { validate } = require('schema-utils');
+const colors = require('colors-console');
 const schema = require('./upload.schema.json');
 const ssh = new NodeSSH();
+const color = {
+  success: ['red', 'greenBG', 'underline'],
+  error: ['white', 'redBG', 'underline'],
+};
+const info = function (msg, type = 'success') {
+  console.log(colors(color[type], msg));
+};
 class AutoUploadPlugin {
   constructor(options) {
     validate(schema, options, {
@@ -23,13 +31,11 @@ class AutoUploadPlugin {
           username: this.username,
           password: this.password,
         });
-        console.log('connection succeeded');
+        info(colors([], 'connection succeeded'));
       } catch (err) {
-        console.log('connection failed: ', err);
+        info('connection failed: ' + err, 'error');
       }
       try {
-        console.log(outputPath);
-        console.log(this.remoteDirectory);
         const res = await ssh.putDirectory(
           outputPath,
           this.remoteDirectory,
@@ -37,12 +43,12 @@ class AutoUploadPlugin {
           { recursive: true, concurrency: 10 },
         );
         if (res) {
-          console.log('file transfer succeeded');
+          info('file transfer succeeded');
         } else {
-          console.log('file transfer failed, please adjust configuration or try again');
+          info('file transfer failed, please adjust configuration or try again', 'error');
         }
       } catch (err) {
-        console.log(err);
+        info(err, 'error');
       }
       ssh.dispose();
       callback();
