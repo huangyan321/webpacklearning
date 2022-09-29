@@ -1,6 +1,6 @@
 {
   "name": "auto-file-upload-plugin",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "webpack plugin,可自动化上传打包文件至远程服务器指定文件夹",
   "main": "index.js",
   "directories": {
